@@ -1,0 +1,24 @@
+"use client";
+
+import { useParams } from "next/navigation";
+import JobDetailsPage from "@/Components/PageComponents/mainPages/JobDetailsPage";
+import MediaSection from "@/Components/PageComponents/mainPages/MediaSection";
+import { useCareerJobDetails } from "@/Hooks/api/homepage_api";
+
+export default function Page() {
+  const params = useParams();
+  const jobId = Array.isArray(params?.id) ? params.id[0] : params?.id;
+
+  const { data, isLoading } = useCareerJobDetails(jobId);
+
+  if (isLoading) return <div>Loading...</div>;
+
+  const job = data?.data;
+
+  return (
+    <div>
+      <JobDetailsPage job={job} />
+      <MediaSection media={job?.company?.media} />
+    </div>
+  );
+}

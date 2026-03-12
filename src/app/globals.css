@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  /* Colors */
+  --color-primary-green: #63be60;
+  --color-secondary-blue: #0184ff;
+
+  /* Font Family */
+  --font-inter: var(--font-inter);
+
+  /* Breakpoints */
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 576px;
+  --breakpoint-lg: 768px;
+  --breakpoint-xl: 1024px;
+  --breakpoint-2xl: 1280px;
+  --breakpoint-3xl: 1536px;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* Custom CSS */
+
+.section_title {
+  @apply text-xl;
+}
+
+.section_description {
+  @apply text-base;
+}
+
+/* ============================= */
+/* Form Inputs */
+/* ============================= */
+
+.form-input {
+  @apply w-full
+    rounded-xl
+    border
+    border-[#DFE1E7]
+    bg-white
+    px-4
+    py-3
+    text-sm
+    text-gray-900
+    placeholder:text-gray-400
+    outline-none
+    transition
+    focus:border-[#0E2B8B]
+    focus:ring-2
+    focus:ring-[#0E2B8B]/10;
+}
+.form-select {
+  @apply w-full
+    rounded-xl
+    border
+    border-[#DFE1E7]
+    bg-white
+    px-4
+    py-3
+    text-sm
+    text-gray-900
+    placeholder:text-gray-400
+    outline-none
+    transition
+    focus:border-[#0E2B8B]
+    focus:ring-2
+    focus:ring-[#0E2B8B]/10;
+}
+
+/* Read-only input (email, locked fields) */
+.form-input-readonly {
+  @apply w-full
+    rounded-xl
+    border
+    border-[#DFE1E7]
+    bg-gray-100
+    px-4
+    py-3
+    text-sm
+    text-gray-600
+    cursor-not-allowed;
+}
+
+/* Error state */
+.form-input-error {
+  @apply border-red-400
+    focus:border-red-400
+    focus:ring-2
+    focus:ring-red-400/20;
+}
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
