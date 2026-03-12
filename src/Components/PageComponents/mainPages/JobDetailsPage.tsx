@@ -38,6 +38,8 @@ type Job = {
   contract: string;
   function: string;
   created_at: string;
+  source?: string;
+  apply_url?: string;
   company: Company;
 };
 
@@ -50,6 +52,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export default function JobDetailsPage({ job }: { job: Job }) {
   const company = job?.company;
+  console.log(job,"form job details");
 
   const shortName =
     company?.name
@@ -60,6 +63,19 @@ export default function JobDetailsPage({ job }: { job: Job }) {
       ?.toUpperCase() || "CX";
 
   const requirements = job?.requirements?.split("\n") || [];
+
+  const handleApply = () => {
+  if (!job) return;
+
+  if (job.source === "aerohire") {
+    window.location.href = `https://aerohire.io/application/${job.id}`;
+    return;
+  }
+
+  if (job.apply_url && job.apply_url.trim() !== "") {
+    window.location.href = job.apply_url;
+  }
+};
 
   return (
     <section className="mx-auto mt-6 max-w-272.75 px-4 sm:px-6 xl:px-0 text-white">
@@ -124,7 +140,8 @@ export default function JobDetailsPage({ job }: { job: Job }) {
           </div>
 
           <button
-            onClick={() => (window.location.href = `https://aerohire.io/application/${job?.id}`)}
+
+  onClick={handleApply}
             className="cursor-pointer rounded-lg border border-white/40 bg-[#17225f] px-6 py-2  font-medium text-white hover:opacity-90"
           >
             Apply Now

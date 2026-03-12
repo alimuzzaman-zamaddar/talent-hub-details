@@ -25,6 +25,7 @@ export default function Page() {
         <CompanyProfileCard company={careerData?.company} />
 
         <OpenPositions
+      
           jobs={careerData?.jobs?.data}
           filters={careerData?.filters_data}
         />

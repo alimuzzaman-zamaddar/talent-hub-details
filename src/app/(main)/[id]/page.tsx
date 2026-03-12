@@ -14,6 +14,7 @@ export default function Page() {
   if (isLoading) return <div>Loading...</div>;
 
   const job = data?.data;
+  console.log(job,"from job");
 
   return (
     <div>
