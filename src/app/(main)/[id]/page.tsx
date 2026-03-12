@@ -1,5 +1,4 @@
 "use client";
-
 import { useParams } from "next/navigation";
 import JobDetailsPage from "@/Components/PageComponents/mainPages/JobDetailsPage";
 import MediaSection from "@/Components/PageComponents/mainPages/MediaSection";
