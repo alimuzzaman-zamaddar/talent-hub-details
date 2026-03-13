@@ -7,6 +7,7 @@ import MediaSection from "@/Components/PageComponents/mainPages/MediaSection";
 import MissionBenefits from "@/Components/PageComponents/mainPages/MissionBenefits";
 import OpenPositions from "@/Components/PageComponents/mainPages/OpenPositions";
 import { useCareerPage } from "@/Hooks/api/homepage_api";
+import Loader from "@/Components/Common/Loader";
 
 export default function Page() {
   const [category, setCategory] = useState("");
@@ -17,7 +18,12 @@ export default function Page() {
 
   const careerData = data?.data;
 
-  if (isLoading) return null;
+  if (isLoading)
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
 
   return (
     <main>
@@ -25,7 +31,6 @@ export default function Page() {
         <CompanyProfileCard company={careerData?.company} />
 
         <OpenPositions
-      
           jobs={careerData?.jobs?.data}
           filters={careerData?.filters_data}
         />

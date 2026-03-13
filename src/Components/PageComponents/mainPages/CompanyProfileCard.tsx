@@ -21,7 +21,7 @@ type Company = {
   };
   social_links?: SocialLink[];
 };
-
+const url =  process.env.NEXT_PUBLIC_BASE_URL;
 export default function CompanyProfileCard({ company }: { company: Company }) {
   const generatedShortName =
     company?.name
@@ -35,12 +35,9 @@ export default function CompanyProfileCard({ company }: { company: Company }) {
     <section className="mx-auto mt-6 max-w-272.75 px-4 sm:px-6 xl:px-0">
       <div>
         {/* ================= COVER IMAGE ================= */}
-        <div className="relative h-48 sm:h-64 lg:h-70 w-full overflow-hidden rounded-2xl border-2 border-gray-400">
+        <div className="relative h-48 sm:h-64 lg:h-70 w-full overflow-hidden rounded-2xl border-2 border-gray-400 bg-[#17225F]">
           <Image
-            src={
-              company?.banner ||
-              "https://i.ibb.co.com/j9cqPf8Y/joyful-stewardesses-standing-near-aircraft-at-airp-2025-03-26-14-42-46-utc-1.png"
-            }
+            src={company?.banner ? `${url}/${company?.banner}` : "/default-banner.png"}
             alt={`${company?.name} Cover`}
             fill
             className="object-cover"
@@ -56,7 +53,7 @@ export default function CompanyProfileCard({ company }: { company: Company }) {
           <div className="absolute -top-20 sm:-top-22 left-1/2 sm:left-12 -translate-x-1/2 sm:translate-x-0 h-32 w-32 sm:h-42 sm:w-42 overflow-hidden rounded-full border-4 border-white bg-white shadow-md">
             {company?.logo ? (
               <Image
-                src={company.logo}
+                src={`${url}/${company?.logo}`}
                 alt={company?.name}
                 fill
                 className="object-cover"
@@ -111,13 +108,9 @@ export default function CompanyProfileCard({ company }: { company: Company }) {
 
           {/* ================= ABOUT ================= */}
           <div className="mt-10 space-y-5 px-2 sm:px-4 xl:px-0 pb-6">
-            <h2 className="text-xl font-semibold">
-              About {company?.name}
-            </h2>
+            <h2 className="text-xl font-semibold">About {company?.name}</h2>
 
-            <p className=" leading-relaxed text-gray-500">
-              {company?.about}
-            </p>
+            <p className=" leading-relaxed text-gray-500">{company?.about}</p>
           </div>
         </div>
       </div>

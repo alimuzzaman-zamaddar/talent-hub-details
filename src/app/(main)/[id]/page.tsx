@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import JobDetailsPage from "@/Components/PageComponents/mainPages/JobDetailsPage";
 import MediaSection from "@/Components/PageComponents/mainPages/MediaSection";
 import { useCareerJobDetails } from "@/Hooks/api/homepage_api";
+import Loader from "@/Components/Common/Loader";
 
 export default function Page() {
   const params = useParams();
@@ -10,7 +11,7 @@ export default function Page() {
 
   const { data, isLoading } = useCareerJobDetails(jobId);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div><Loader /> </div>;
 
   const job = data?.data;
   console.log(job,"from job");

@@ -52,7 +52,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export default function JobDetailsPage({ job }: { job: Job }) {
   const company = job?.company;
-  console.log(job,"form job details");
+  console.log(job, "form job details");
 
   const shortName =
     company?.name
@@ -65,26 +65,25 @@ export default function JobDetailsPage({ job }: { job: Job }) {
   const requirements = job?.requirements?.split("\n") || [];
 
   const handleApply = () => {
-  if (!job) return;
+    if (!job) return;
 
-  if (job.source === "aerohire") {
-    window.location.href = `https://aerohire.io/application/${job.id}`;
-    return;
-  }
+    if (job.source === "aerohire") {
+      window.location.href = `https://talenthub.aeroselect.io/application/${job.id}`;
+      return;
+    }
 
-  if (job.apply_url && job.apply_url.trim() !== "") {
-    window.location.href = job.apply_url;
-  }
-};
+    if (job.apply_url && job.apply_url.trim() !== "") {
+      window.location.href = job.apply_url;
+    }
+  };
 
   return (
     <section className="mx-auto mt-6 max-w-272.75 px-4 sm:px-6 xl:px-0 text-white">
       {/* COVER */}
-      <div className="relative h-40 sm:h-52 lg:h-65 w-full overflow-hidden rounded-2xl border border-[#DFE1E7]/30">
+      <div className="relative h-40 sm:h-52 lg:h-65 w-full overflow-hidden rounded-2xl border border-[#DFE1E7]/30 bg-[#17225F]">
         <Image
           src={
-            company?.banner ||
-            "https://i.ibb.co.com/j9cqPf8Y/joyful-stewardesses-standing-near-aircraft.png"
+            company?.banner ? `${process.env.NEXT_PUBLIC_BASE_URL}/${company?.banner}` : "/default-banner.png"
           }
           alt="Cover"
           fill
@@ -98,7 +97,7 @@ export default function JobDetailsPage({ job }: { job: Job }) {
         <div className="absolute -top-18 sm:-top-22 left-1/2 sm:left-12 -translate-x-1/2 sm:translate-x-0 h-32 w-32 sm:h-42 sm:w-42 overflow-hidden rounded-full border-4 border-white bg-white shadow-md">
           {company?.logo ? (
             <Image
-              src={company.logo}
+              src={company.logo ? `${process.env.NEXT_PUBLIC_BASE_URL}/${company?.logo}` : "/default-logo.png"}
               alt={company.name}
               fill
               className="object-cover"
@@ -127,10 +126,7 @@ export default function JobDetailsPage({ job }: { job: Job }) {
         {/* JOB TITLE */}
         <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="mb-10 sm:mb-14">
-            <Link
-              href="/"
-              className=" text-gray-400 hover:text-[#17225f]"
-            >
+            <Link href="/" className=" text-gray-400 hover:text-[#17225f]">
               ← Jobs @ {company?.name}
             </Link>
 
@@ -140,8 +136,7 @@ export default function JobDetailsPage({ job }: { job: Job }) {
           </div>
 
           <button
-
-  onClick={handleApply}
+            onClick={handleApply}
             className="cursor-pointer rounded-lg border border-white/40 bg-[#17225f] px-6 py-2  font-medium text-white hover:opacity-90"
           >
             Apply Now
@@ -154,16 +149,12 @@ export default function JobDetailsPage({ job }: { job: Job }) {
             About {company?.name}
           </h2>
 
-          <p className=" leading-relaxed text-gray-400">
-            {company?.about}
-          </p>
+          <p className=" leading-relaxed text-gray-400">{company?.about}</p>
         </div>
 
         {/* ABOUT ROLE */}
         <div className="mt-10 space-y-4 max-w-3xl">
-          <h2 className="text-xl font-semibold text-black">
-            About the Role
-          </h2>
+          <h2 className="text-xl font-semibold text-black">About the Role</h2>
 
           <div
             className=" leading-relaxed text-gray-400"
@@ -185,15 +176,13 @@ export default function JobDetailsPage({ job }: { job: Job }) {
         <div className="mt-10 space-y-4 max-w-3xl">
           <h2 className="text-xl font-semibold text-black">Our Mission</h2>
 
-          <p className=" leading-relaxed text-gray-400">
-            {company?.mission}
-          </p>
+          <p className=" leading-relaxed text-gray-400">{company?.mission}</p>
         </div>
 
         {/* APPLY CENTER */}
         <div className="mt-10 flex justify-center">
           <button
-            onClick={() => (window.location.href = `https://aerohire.io/application/${job?.id}`)}
+            onClick={handleApply}
             className="cursor-pointer min-w-55 rounded-lg border border-white/40 bg-[#17225f] px-10 py-2  font-medium text-white hover:opacity-90"
           >
             Apply Now
