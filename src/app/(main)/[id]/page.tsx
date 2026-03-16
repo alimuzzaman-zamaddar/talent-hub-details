@@ -5,6 +5,7 @@ import MediaSection from "@/Components/PageComponents/mainPages/MediaSection";
 import { useCareerJobDetails } from "@/Hooks/api/homepage_api";
 import Loader from "@/Components/Common/Loader";
 
+
 export default function Page() {
   const params = useParams();
   const jobId = Array.isArray(params?.id) ? params.id[0] : params?.id;
